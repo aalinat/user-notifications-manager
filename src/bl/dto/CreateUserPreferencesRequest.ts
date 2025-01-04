@@ -4,7 +4,7 @@ import {Preferences} from "@src/bl/dto/Preferences";
 
 
 
-export class CreateUserPreferencesDTO {
+export class CreateUserPreferencesRequest {
     @IsEmail({}, { message: 'Invalid email format' })
     email!: string;
 

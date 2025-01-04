@@ -1,6 +1,5 @@
 import {withMiddleware} from "inversify-express-utils";
 
-// Custom decorator for authentication
 export function authenticate() {
     return withMiddleware(
         async (req, res, next) => {

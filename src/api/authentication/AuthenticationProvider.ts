@@ -2,6 +2,7 @@ import express from "express";
 import {injectable} from 'inversify';
 import {AUTHENTICATION_TOKEN} from "@config/config";
 import {interfaces} from "inversify-express-utils";
+import {Principal, User} from "@src/api/authentication/Principal";
 
 
 @injectable()
@@ -26,27 +27,3 @@ export class AuthenticationProvider implements interfaces.AuthProvider {
     }
 }
 
-class User {
-    constructor(public isAuthenticated: boolean) {
-    }
-}
-
-export class Principal implements interfaces.Principal<User> {
-    details: User;
-
-    public constructor(details: User) {
-        this.details = details;
-    }
-
-    isAuthenticated(): Promise<boolean> {
-        return Promise.resolve(this.details.isAuthenticated);
-    }
-
-    isInRole(role: string): Promise<boolean> {
-        return Promise.resolve(false);
-    }
-
-    isResourceOwner(resourceId: unknown): Promise<boolean> {
-        return Promise.resolve(false);
-    }
-}

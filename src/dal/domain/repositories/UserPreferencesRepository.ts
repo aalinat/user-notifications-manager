@@ -1,20 +1,32 @@
 import { injectable, inject } from "inversify";
-import { UserPreferences } from '@entities/UserPreferences';
+import {UserMapping, UserPreferences, UserRecord} from '@entities/UserRecord';
 import {InMemoryUserPreferencesStorage} from "@storage/InMemoryUserPreferencesStorage";
 
 @injectable()
 export class UserPreferencesRepository {
     constructor(@inject(InMemoryUserPreferencesStorage) private readonly storage: InMemoryUserPreferencesStorage) {}
 
-    create(userPreferences: UserPreferences): UserPreferences {
-        return this.storage.create(userPreferences);
+    create(userId: string, userRecord: UserRecord): UserMapping {
+        return this.storage.create(userId, userRecord);
     }
 
-    update(userId: string, preferences: Partial<UserPreferences['preferences']>): UserPreferences | null {
+    update(userId: string, preferences: UserPreferences): UserMapping | null {
         return this.storage.update(userId, preferences);
     }
 
-    findByUserId(userId: string): UserPreferences | undefined {
+    findByUserId(userId: string): UserRecord | undefined {
         return this.storage.findByUserId(userId);
+    }
+
+    findByEmail(email: string): UserRecord | undefined {
+        return this.storage.findByEmail(email);
+    }
+
+    findByPhone(telephone: string): UserRecord | undefined {
+        return this.storage.findByPhone(telephone);
+    }
+
+    findUsers() {
+        return this.storage.findUsers();
     }
 }

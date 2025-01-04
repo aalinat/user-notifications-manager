@@ -1,12 +1,14 @@
 import {UserPreferencesService} from "@services/UserPreferencesService";
-import {CreateUserPreferencesDTO} from "@dto/CreateUserPreferencesDTO";
-import {UpdateUserPreferencesDTO} from "@dto/UpdateUserPreferencesDTO";
+import {CreateUserPreferencesRequest} from "@dto/CreateUserPreferencesRequest";
+import {UpdateUserPreferencesRequest} from "@dto/UpdateUserPreferencesRequest";
 import {createResponse} from "@src/api/utils/response";
 import {inject} from "inversify";
 import {
-    controller, BaseHttpController, httpPost, httpPut, requestParam, requestBody
+    controller, BaseHttpController, httpPost, httpPut, requestParam, requestBody, httpGet
 } from "inversify-express-utils";
-import {authenticate} from "@src/api/authentication/IsAuthenticationDecorator";
+import {authenticate} from "@src/api/decorators/authenticate";
+import {validated} from "@src/api/decorators/validate";
+import {isUUID} from "class-validator";
 
 @controller('/preferences')
 export class UserPreferencesController extends BaseHttpController {
@@ -20,7 +22,8 @@ export class UserPreferencesController extends BaseHttpController {
      */
     @httpPost("")
     @authenticate()
-    public async createUserPreferences(@requestBody() body: CreateUserPreferencesDTO) {
+    @validated(CreateUserPreferencesRequest)
+    public async createUserPreferences(@requestBody() body: CreateUserPreferencesRequest) {
         const userPreferences = this.service.createUserPreferences(body);
         return this.json(createResponse(
                 'success',
@@ -35,7 +38,12 @@ export class UserPreferencesController extends BaseHttpController {
      * @param body The user preferences data
      */
     @httpPut('/:userId')
-    public async updateUserPreferences(@requestParam("userId") userId: string, @requestBody() body: UpdateUserPreferencesDTO) {
+    @authenticate()
+    @validated(UpdateUserPreferencesRequest)
+    public async updateUserPreferences(@requestParam("userId") userId: string, @requestBody() body: UpdateUserPreferencesRequest) {
+        if (!isUUID(userId)) {
+            return this.json(createResponse('error', 'Empty user id'), 404);
+        }
         const updated = this.service.updateUserPreferences(userId, body);
         if (!updated) {
             return this.json(createResponse('error', 'User not found'), 404);
@@ -43,4 +51,14 @@ export class UserPreferencesController extends BaseHttpController {
             return this.json(createResponse('success', 'User preferences updated successfully', updated));
         }
     };
+
+    /**
+     * get all users: testing purposes only!
+     * in real life pagination would be implemented
+     */
+    @httpGet("")
+    public async getAllUsers() {
+        const users = this.service.getUsers();
+        return this.json(createResponse('success', '', users));
+    }
 }

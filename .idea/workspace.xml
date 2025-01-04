@@ -4,8 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="basic structure: with inversify">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="validation&#10;fix user preferences flow">
+      <change afterPath="$PROJECT_DIR$/src/api/authentication/Principal.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/decorators/validate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/authentication/AuthenticationProvider.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/authentication/AuthenticationProvider.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/authentication/IsAuthenticationDecorator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/decorators/authenticate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/controllers/UserPreferencesController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/controllers/UserPreferencesController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bl/dto/CreateUserPreferencesDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/bl/dto/CreateUserPreferencesRequest.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bl/dto/UpdateUserPreferencesDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/bl/dto/UpdateUserPreferencesRequest.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bl/services/UserPreferencesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/bl/services/UserPreferencesService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/ioc.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/ioc.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/domain/entities/UserPreferences.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/domain/entities/UserRecord.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/domain/repositories/UserPreferencesRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/domain/repositories/UserPreferencesRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/integration/UserPreferencesController.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/UserPreferencesController.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,11 +79,11 @@
       <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\api\decorators" />
       <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\types" />
       <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\bl" />
       <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\dal" />
       <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\core" />
-      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\api" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -126,7 +139,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735995047049</updated>
       <workItem from="1735995048079" duration="5578000" />
-      <workItem from="1736001239578" duration="25333000" />
+      <workItem from="1736001239578" duration="29901000" />
     </task>
     <task id="LOCAL-00001" summary="empty package.json">
       <option name="closed" value="true" />
@@ -144,16 +157,37 @@
       <option name="project" value="LOCAL" />
       <updated>1736026523516</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="gitignore&#10;yarn.lock&#10;idea project">
+      <option name="closed" value="true" />
+      <created>1736026625374</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1736026625374</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="empty package.json" />
     <MESSAGE value="basic structure: with inversify" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic structure: with inversify" />
+    <MESSAGE value="gitignore&#10;yarn.lock&#10;idea project" />
+    <MESSAGE value="validation&#10;fix user preferences flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="validation&#10;fix user preferences flow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -166,15 +200,51 @@
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/api/authentication/AuthenticationProvider.ts</url>
-          <line>15</line>
+          <line>16</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/api/authentication/IsAuthenticationDecorator.ts</url>
+          <url>file://$PROJECT_DIR$/src/api/decorators/authenticate.ts</url>
           <line>7</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts</url>
+          <line>27</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts</url>
+          <line>14</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts</url>
+          <line>21</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts</url>
+          <line>11</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/bl/services/UserPreferencesService.ts</url>
+          <line>23</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts</url>
+          <line>55</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -6,9 +6,9 @@ import {UserPreferencesController} from "@controllers/UserPreferencesController"
 import {AuthenticationProvider} from "@src/api/authentication/AuthenticationProvider";
 
 const container = new Container();
-container.bind(InMemoryUserPreferencesStorage).toSelf();
-container.bind(UserPreferencesRepository).toSelf();
-container.bind(UserPreferencesService).toSelf();
-container.bind(UserPreferencesController).toSelf();
+container.bind(InMemoryUserPreferencesStorage).toSelf().inSingletonScope();
+container.bind(UserPreferencesRepository).toSelf().inSingletonScope();
+container.bind(UserPreferencesService).toSelf().inSingletonScope();
+container.bind(UserPreferencesController).toSelf().inSingletonScope();
 container.bind(AuthenticationProvider).toSelf();
 export { container };
