@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "ES2020",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@config/*": ["src/config/*"],
+      "@dto/*": ["src/bl/dto/*"],
+      "@services/*": ["src/bl/services/*"],
+      "@repositories/*": ["src/dal/domain/repositories/*"],
+      "@entities/*": ["src/dal/domain/entities/*"],
+      "@storage/*": ["src/dal/infra/storage/*"],
+      "@pipes/*": ["src/api/pipes/*"],
+      "@routes/*": ["src/api/routes/*"],
+      "@middleware/*": ["src/api/middleware/*"],
+      "@controllers/*": ["src/api/controllers/*"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"],
+  "files":[
+    "src/types/express.d.ts"
+  ]
+}
