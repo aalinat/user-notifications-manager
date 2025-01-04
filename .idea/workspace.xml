@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="validation&#10;fix user preferences flow">
-      <change afterPath="$PROJECT_DIR$/src/api/authentication/Principal.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/decorators/validate.ts" afterDir="false" />
+    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="fixed tests&#10;unify responses">
+      <change afterPath="$PROJECT_DIR$/tests/integration/Constants.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/authentication/AuthenticationProvider.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/authentication/AuthenticationProvider.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/authentication/IsAuthenticationDecorator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/decorators/authenticate.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/controllers/UserPreferencesController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/controllers/UserPreferencesController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bl/dto/CreateUserPreferencesDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/bl/dto/CreateUserPreferencesRequest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bl/dto/UpdateUserPreferencesDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/bl/dto/UpdateUserPreferencesRequest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bl/services/UserPreferencesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/bl/services/UserPreferencesService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/ioc.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/ioc.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/domain/entities/UserPreferences.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/domain/entities/UserRecord.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/domain/repositories/UserPreferencesRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/domain/repositories/UserPreferencesRepository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/decorators/authenticate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/decorators/authenticate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/decorators/validate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/decorators/validate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/utils/response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/utils/response.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/integration/UserPreferencesController.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/UserPreferencesController.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +78,7 @@
       <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\core" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="Jest.UserPreferencesController Integration Tests">
     <configuration name="UserPreferencesController Integration Tests" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -96,6 +88,32 @@
       <test-file value="$PROJECT_DIR$/tests/integration/UserPreferencesController.spec.ts" />
       <test-names>
         <test-name value="UserPreferencesController Integration Tests" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserPreferencesController Integration Tests.Create User Preferences: Missing Email" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/tests/integration/UserPreferencesController.spec.ts" />
+      <test-names>
+        <test-name value="UserPreferencesController Integration Tests" />
+        <test-name value="Create User Preferences: Missing Email" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserPreferencesController Integration Tests.Create User Preferences: Missing Preference" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/tests/integration/UserPreferencesController.spec.ts" />
+      <test-names>
+        <test-name value="UserPreferencesController Integration Tests" />
+        <test-name value="Create User Preferences: Missing Preference" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -124,8 +142,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
         <item itemvalue="Jest.UserPreferencesController Integration Tests" />
+        <item itemvalue="Jest.UserPreferencesController Integration Tests.Create User Preferences: Missing Preference" />
+        <item itemvalue="Jest.UserPreferencesController Integration Tests.Create User Preferences: Missing Email" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="Jest.UserPreferencesController Integration Tests.should fail to update user preferences with invalid email" />
       </list>
     </recent_temporary>
@@ -139,7 +159,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735995047049</updated>
       <workItem from="1735995048079" duration="5578000" />
-      <workItem from="1736001239578" duration="29901000" />
+      <workItem from="1736001239578" duration="30907000" />
     </task>
     <task id="LOCAL-00001" summary="empty package.json">
       <option name="closed" value="true" />
@@ -165,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736026625374</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="validation&#10;fix user preferences flow">
+      <option name="closed" value="true" />
+      <created>1736031172616</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1736031172616</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,17 +215,12 @@
     <MESSAGE value="basic structure: with inversify" />
     <MESSAGE value="gitignore&#10;yarn.lock&#10;idea project" />
     <MESSAGE value="validation&#10;fix user preferences flow" />
-    <option name="LAST_COMMIT_MESSAGE" value="validation&#10;fix user preferences flow" />
+    <MESSAGE value="fixed tests&#10;unify responses" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed tests&#10;unify responses" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/tests/integration/UserPreferencesController.spec.ts</url>
-          <line>16</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/api/authentication/AuthenticationProvider.ts</url>
           <line>16</line>

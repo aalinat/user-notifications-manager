@@ -14,3 +14,15 @@ export const createResponse = <T>(status: 'success' | 'error', message: string, 
         error,
     };
 };
+
+export class ValidationError {
+    constructor(public property: string, public constraints: any) {
+    }
+}
+export const createErrorResponse = (message: string, errors?: ValidationError[]) =>  {
+    return {
+        status: "error",
+        message,
+        errors
+    };
+}
