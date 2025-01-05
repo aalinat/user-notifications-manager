@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="Queue &amp; Notification Structure">
-      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/queue/ConsumerFactory.ts" afterDir="false" />
+    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="implement a simple consumer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/core/ioc.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/core/ioc.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/core/model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/core/model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/providers/NotificationProviderRegistry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/providers/NotificationProviderRegistry.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/queue/InMemoryNotificationQueue.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/queue/InMemoryNotificationQueue.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts" afterDir="false" />
@@ -160,7 +158,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735995047049</updated>
       <workItem from="1735995048079" duration="5578000" />
-      <workItem from="1736001239578" duration="45239000" />
+      <workItem from="1736001239578" duration="46175000" />
     </task>
     <task id="LOCAL-00001" summary="empty package.json">
       <option name="closed" value="true" />
@@ -210,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736044410545</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="implement a simple consumer">
+      <option name="closed" value="true" />
+      <created>1736047004407</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1736047004407</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,7 +241,8 @@
     <MESSAGE value="fixed tests&#10;unify responses" />
     <MESSAGE value="Queue &amp; Notification Strucuture" />
     <MESSAGE value="Queue &amp; Notification Structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Queue &amp; Notification Structure" />
+    <MESSAGE value="implement a simple consumer" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement a simple consumer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -324,23 +331,17 @@
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts</url>
-          <line>17</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts</url>
-          <line>10</line>
+          <line>12</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts</url>
-          <line>22</line>
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/queue/InMemoryNotificationQueue.ts</url>
+          <line>42</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="41" />
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -14,7 +14,7 @@ export class InMemoryNotificationQueue implements NotificationQueue<Notification
 
     async enqueue(message: NotificationRequest): Promise<string> {
         const id = this.generateId();
-        const queueMessage: QueueMessage<NotificationRequest> = { id, payload: message, retries: 0, enqueueTime: new Date() };
+        const queueMessage: QueueMessage<NotificationRequest> = { id, payload: message, retries: 0, enqueueTime: Date.now() };
         this.queue.push(queueMessage);
         return id;
     }

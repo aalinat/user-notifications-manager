@@ -18,10 +18,7 @@ export class ProviderRegistry implements NotificationProviderRegistry {
             this.registry.set(provider.getProviderChannel(), provider);
             const queue = queueFactory.createQueue();
             queue.configure({
-                rateLimit: 1,
                 maxRetries: 3,
-                limitWindow: 1000,
-                delayBetweenRetries: 200
             })
             this.queues.set(provider.getProviderChannel(),queue);
             const consumer = consumerFactory.createConsumer(provider, provider.getProviderChannel(), queue);

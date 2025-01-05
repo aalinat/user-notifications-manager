@@ -32,14 +32,11 @@ export interface QueueMessage<T> {
     id: string;
     payload: T;
     retries: number;
-    enqueueTime: Date;
+    enqueueTime: number;
 }
 
 export interface QueueConfig {
-    rateLimit?: number;           // Max messages per second
-    limitWindow?: number;         // Time window for rate limiting (ms)
     maxRetries?: number;          // Maximum retries before DLQ
-    delayBetweenRetries?: number; // Delay between retry attempts (ms)
 }
 
 
