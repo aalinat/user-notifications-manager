@@ -13,7 +13,7 @@ export class NotificationManager {
         await Promise.all(channels.map(async (channel) => {
             const messageId = await this.route(channel, request);
             if (!messageId) {
-                console.error("message not enqueued for send: " + request.to)
+                console.error("message not enqueued for send: " + JSON.stringify(request))
                 return;
             }
             messageIds.push(new BulkSendRecord(messageId, channel));

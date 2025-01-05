@@ -4,12 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="implement a simple consumer">
+    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="docker compose&#10;postman collection&#10;documentation">
+      <change afterPath="$PROJECT_DIR$/reference/VIM.postman_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nvmrc" beforeDir="false" afterPath="$PROJECT_DIR$/.nvmrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bl/services/NotificationService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/bl/services/NotificationService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/NotificationManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/NotificationManager.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/core/model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/core/model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/providers/NotificationProviderRegistry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/providers/NotificationProviderRegistry.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/queue/InMemoryNotificationQueue.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/queue/InMemoryNotificationQueue.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/providers/SMSProvider.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/providers/SMSProvider.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +79,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager" />
+      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\dist" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\dal\data\notifications\queue" />
@@ -158,7 +170,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735995047049</updated>
       <workItem from="1735995048079" duration="5578000" />
-      <workItem from="1736001239578" duration="46175000" />
+      <workItem from="1736001239578" duration="50853000" />
     </task>
     <task id="LOCAL-00001" summary="empty package.json">
       <option name="closed" value="true" />
@@ -216,7 +228,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736047004407</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="rate limiting">
+      <option name="closed" value="true" />
+      <created>1736047899043</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1736047899043</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +262,10 @@
     <MESSAGE value="Queue &amp; Notification Strucuture" />
     <MESSAGE value="Queue &amp; Notification Structure" />
     <MESSAGE value="implement a simple consumer" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement a simple consumer" />
+    <MESSAGE value="rate limiting" />
+    <MESSAGE value="request handling" />
+    <MESSAGE value="docker compose&#10;postman collection&#10;documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="docker compose&#10;postman collection&#10;documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -297,21 +320,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/dal/data/notifications/providers/SMSProvider.ts</url>
-          <line>19</line>
+          <line>24</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts</url>
-          <line>26</line>
+          <line>27</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts</url>
-          <line>32</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dal/data/notifications/NotificationManager.ts</url>
@@ -325,23 +342,89 @@
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="33" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dal/data/notifications/queue/InMemoryNotificationQueue.ts</url>
           <line>36</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts</url>
           <line>12</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dal/data/notifications/queue/InMemoryNotificationQueue.ts</url>
           <line>42</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/NotificationAPIClient.ts</url>
+          <line>18</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts</url>
+          <line>32</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/bl/services/NotificationService.ts</url>
+          <line>29</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/NotificationManager.ts</url>
+          <line>13</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts</url>
+          <line>36</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts</url>
+          <line>34</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/providers/SMSProvider.ts</url>
+          <line>33</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/providers/SMSProvider.ts</url>
+          <line>31</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts</url>
+          <line>36</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/bl/services/NotificationService.ts</url>
+          <line>22</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/bl/services/NotificationService.ts</url>
+          <line>26</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

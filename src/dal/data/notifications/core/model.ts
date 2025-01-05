@@ -8,7 +8,9 @@ export enum NotificationStatus {
 
 export class NotificationRequest {
     @IsNotEmpty()
-    to!: string;
+    email!: string;
+    @IsNotEmpty()
+    telephone!: string;
     @IsNotEmpty()
     message!: string;
 }

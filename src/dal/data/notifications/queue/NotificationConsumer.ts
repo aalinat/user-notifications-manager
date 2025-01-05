@@ -11,8 +11,7 @@ export class NotificationConsumer {
 
     async handler(request: NotificationRequest): Promise<NotificationResponse> {
         console.log("handling message!");
-        await this.provider.send(request)
-        return new NotificationResponse();
+        return this.provider.send(request)
     }
     async startPolling(interval: number = 1000, rateLimit: number = 1, limitWindow: number = 1000): Promise<void> {
         setInterval(async () => {

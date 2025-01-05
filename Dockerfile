@@ -1,5 +1,4 @@
-# Use Node 16 LTS
-FROM node:16
+FROM node:20
 
 # Set working directory
 WORKDIR /usr/src/app
@@ -8,11 +7,11 @@ WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
 
 # Install dependencies
-RUN yarn install --production
+RUN yarn install
 
 # Copy source code and build
 COPY . .
 RUN yarn build
 
 # Start application
-CMD ["node", "dist/index.js"]
+CMD ["yarn", "start"]

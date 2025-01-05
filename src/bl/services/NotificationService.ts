@@ -17,11 +17,14 @@ export class NotificationService {
             throw new Error("cannot send notification, user not found");
         }
         notificationRequest.message = request.message;
+
         const channels: NotificationChannel[] = [];
         if (user.preferences.email) {
-            channels.push(NotificationChannel.EMAIL)
+            notificationRequest.email = user.email;
+            channels.push(NotificationChannel.EMAIL);
         }
         if (user.preferences.sms) {
+            notificationRequest.telephone = user.telephone;
             channels.push(NotificationChannel.SMS)
         }
         return this.notificationManager.send(channels, notificationRequest);

@@ -14,6 +14,7 @@ export class EmailProvider implements NotificationProvider {
 
     constructor(@inject(NotificationAPIClient) private emailProvider: NotificationAPIClient) {
     }
+
     getProviderChannel(): NotificationChannel {
         return NotificationChannel.EMAIL;
     }
@@ -24,14 +25,23 @@ export class EmailProvider implements NotificationProvider {
 
     async send(notification: NotificationRequest): Promise<NotificationResponse> {
         try {
-            const response = await this.emailProvider.sendEmail(notification.to, notification.message);
-            return new NotificationResponse();
-        } catch (err) {
-            if (err instanceof AxiosError) {
-                throw new NotificationError(err.code || "Network Error", 500)
+            const httpResponse = await this.emailProvider.sendEmail(notification.email, notification.message);
+            if (httpResponse.status == 200) {
+                const response = new NotificationResponse();
+                response.message = httpResponse.data.message;
+                response.status = httpResponse.data.status;
+                return response;
             }
-            return new NotificationResponse();
+            console.log("error occured: " + httpResponse.status)
+        } catch (err: any) {
+            if (err instanceof AxiosError) {
+                if (err.code == "ERR_BAD_REQUEST") {
+                    throw new NotificationError(err.code || "Bad Request", 400)
+                }
+            }
+            throw new NotificationError(err.message , 500)
         }
+        throw new NotificationError("Unknown Error", 500)
     }
 
 }
