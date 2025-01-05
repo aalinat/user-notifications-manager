@@ -1,30 +1,39 @@
 import {
-    NotificationChannel,
     NotificationRequest,
     NotificationResponse,
     QueueConfig,
     QueueMessage
-} from "@notifications/core/model";
+} from "@src/dal/data/core/shared/model";
 
+export interface IQueueBroker<PAYLOAD> {
+    route(key: string, payload: PAYLOAD):  void
+}
 
-export interface NotificationProvider {
-    send(notification: NotificationRequest): Promise<NotificationResponse>;
+export interface IProvider {
     getProviderName(): string;
-    getProviderChannel(): NotificationChannel
+    getId(): string
 }
-export interface NotificationProviderRegistry {
-    getProvider(channel: NotificationChannel): NotificationProvider;
-    getQueue(channel: NotificationChannel): NotificationQueue<NotificationRequest>;
+export interface NotificationProvider extends IProvider{
+    send(notification: NotificationRequest): Promise<NotificationResponse>;
+}
+export interface IProviderRegistry<PROVIDER> {
+    getProvider(id: string): PROVIDER;
 }
 
-export interface NotificationQueue<T> {
+export interface IQueuePool<PAYLOAD> {
+    getQueue(id: string): MessageQueue<PAYLOAD>;
+    getQueueIds(): string[];
+    register(id: string, queue: MessageQueue<PAYLOAD>): void;
+}
+
+export interface MessageQueue<PAYLOAD> {
     configure(config: QueueConfig): void;
-    enqueue(message: T): Promise<string>;
+    enqueue(message: PAYLOAD): Promise<string>;
     /**
      * Dequeue a message from the queue.
      * @returns The next message in the queue or null if empty.
      */
-    dequeue(): Promise<QueueMessage<T> | null>;
+    dequeue(): Promise<QueueMessage<PAYLOAD> | null>;
     /**
      * Acknowledge successful message processing.
      * @param messageId - The ID of the processed message.

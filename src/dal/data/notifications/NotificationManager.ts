@@ -1,17 +1,17 @@
 import {inject, injectable} from "inversify";
-import {BulkSendRecord, NotificationChannel, NotificationRequest} from "@notifications/core/model";
-import {ProviderRegistry} from "@notifications/providers/NotificationProviderRegistry";
+import {BulkSendRecord, NotificationChannel, NotificationRequest} from "@src/dal/data/core/shared/model";
+import {QueueBroker} from "@notifications/QueueBroker";
 
 @injectable()
 export class NotificationManager {
 
-    constructor(@inject(ProviderRegistry) private registry: ProviderRegistry) {
+    constructor(@inject(QueueBroker) private broker: QueueBroker) {
     }
 
     async send(channels: NotificationChannel[], request: NotificationRequest): Promise<BulkSendRecord[]> {
         const messageIds: BulkSendRecord[] = [];
         await Promise.all(channels.map(async (channel) => {
-            const messageId = await this.route(channel, request);
+            const messageId = await this.broker.route(channel, request);
             if (!messageId) {
                 console.error("message not enqueued for send: " + JSON.stringify(request))
                 return;
@@ -20,13 +20,5 @@ export class NotificationManager {
         }));
 
         return messageIds;
-    }
-    route<T>(channel: NotificationChannel, message: NotificationRequest) {
-        const queue = this.registry.getQueue(channel)
-        if (queue) {
-            return queue.enqueue(message);
-        } else {
-            console.error(`Queue not found for channel: ${channel}`);
-        }
     }
 }

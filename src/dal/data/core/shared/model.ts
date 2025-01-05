@@ -1,6 +1,6 @@
 import {IsEnum, IsNotEmpty} from "class-validator";
 
-export enum NotificationChannel {SMS= "sms", EMAIL = "email"}
+export enum NotificationChannel {SMS= "SMS", EMAIL = "EMAIL"}
 
 export enum NotificationStatus {
     sent

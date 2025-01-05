@@ -1,18 +1,18 @@
 import {inject, injectable} from "inversify";
-import {NotificationProvider} from "@notifications/core/contract";
+import {NotificationProvider} from "@src/dal/data/core/shared/contract";
 import {
     NotificationChannel,
     NotificationError,
     NotificationRequest,
     NotificationResponse
-} from "@notifications/core/model";
-import {NotificationAPIClient} from "@notifications/NotificationAPIClient";
+} from "@src/dal/data/core/shared/model";
+import {NotificationAPIClient} from "@src/dal/data/core/clients/NotificationAPIClient";
 import {AxiosError} from "axios";
 @injectable()
 export class SMSProvider implements NotificationProvider {
     constructor(@inject(NotificationAPIClient) private smsProvider: NotificationAPIClient) {
     }
-    getProviderChannel(): NotificationChannel {
+    getId(): NotificationChannel {
         return NotificationChannel.SMS;
     }
 

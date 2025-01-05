@@ -1,25 +1,23 @@
-import {NotificationQueue} from "@notifications/core/contract";
-import {NotificationRequest, QueueConfig, QueueMessage} from "@notifications/core/model";
-import {injectable} from "inversify";
+import {QueueConfig, QueueMessage} from "@src/dal/data/core/shared/model";
+import {MessageQueue} from "@src/dal/data/core/shared/contract";
 
-@injectable()
-export class InMemoryNotificationQueue implements NotificationQueue<NotificationRequest> {
-    private queue: QueueMessage<NotificationRequest>[] = [];
-    private processing: Map<string, QueueMessage<NotificationRequest>> = new Map();
+export class InMemoryQueue<T> implements MessageQueue<T> {
+    private queue: QueueMessage<T>[] = [];
+    private processing: Map<string, QueueMessage<T>> = new Map();
     private config: QueueConfig = {};
 
     configure(config: QueueConfig): void {
         this.config = config;
     }
 
-    async enqueue(message: NotificationRequest): Promise<string> {
+    async enqueue(message: T): Promise<string> {
         const id = this.generateId();
-        const queueMessage: QueueMessage<NotificationRequest> = { id, payload: message, retries: 0, enqueueTime: Date.now() };
+        const queueMessage: QueueMessage<T> = { id, payload: message, retries: 0, enqueueTime: Date.now() };
         this.queue.push(queueMessage);
         return id;
     }
 
-    async dequeue(): Promise<QueueMessage<NotificationRequest> | null> {
+    async dequeue(): Promise<QueueMessage<T> | null> {
         const message = this.queue.shift() || null;
         if (message) {
             message.retries++;

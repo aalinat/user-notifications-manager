@@ -1,7 +1,7 @@
 import {inject, injectable} from "inversify";
 import {NotificationManager} from "@notifications/NotificationManager";
 import {SendNotificationRequest} from "@dto/SendNotificationRequest";
-import {NotificationChannel, NotificationRequest} from "@notifications/core/model";
+import {NotificationChannel, NotificationRequest} from "@src/dal/data/core/shared/model";
 import {UserPreferencesService} from "@services/UserPreferencesService";
 
 @injectable()

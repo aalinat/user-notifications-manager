@@ -4,7 +4,7 @@ import {UserPreferencesRepository} from "@repositories/UserPreferencesRepository
 import {InMemoryUserPreferencesStorage} from "@src/dal/domain/storage/InMemoryUserPreferencesStorage";
 import {UserPreferencesController} from "@controllers/UserPreferencesController";
 import {AuthenticationProvider} from "@src/api/authentication/AuthenticationProvider";
-import {notificationsContainer} from "@notifications/core/ioc";
+import {notificationsContainer} from "@src/dal/data/core/shared/ioc";
 import {NotificationController} from "@controllers/NotificationController";
 import {NotificationService} from "@services/NotificationService";
 

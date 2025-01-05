@@ -65,6 +65,5 @@ yarn start
   - since email can be updated
 - What does messageId mean?
   - should be a reference for the message, right now, the messages cannot be polled, but a storage service could be added
-- Why consumer polling is running on RegistryService
+- Why consumer polling is running on App Start
   - very dirty solution, can be enhanced to work with Workers so the main thread is not blocked, did not do due to time constraints
-  - because if we want to add scale, better solutions are available

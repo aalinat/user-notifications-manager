@@ -1,19 +1,17 @@
-import {injectable} from "inversify";
-import {NotificationChannel, NotificationRequest, NotificationResponse, QueueConfig} from "@notifications/core/model";
-import {NotificationProvider, NotificationQueue} from "@notifications/core/contract";
+import {NotificationChannel, NotificationRequest, NotificationResponse} from "@src/dal/data/core/shared/model";
+import {MessageQueue, NotificationProvider} from "@src/dal/data/core/shared/contract";
 
-@injectable()
 export class NotificationConsumer {
     private lastProcessedTime: number = 0;
     private processedCount: number = 0;
-    constructor(private provider: NotificationProvider, private channel: NotificationChannel, private queue: NotificationQueue<NotificationRequest>) {
+    constructor(private provider: NotificationProvider, private channel: NotificationChannel, private queue: MessageQueue<NotificationRequest>) {
     }
 
     async handler(request: NotificationRequest): Promise<NotificationResponse> {
         console.log("handling message!");
         return this.provider.send(request)
     }
-    async startPolling(interval: number = 1000, rateLimit: number = 1, limitWindow: number = 1000): Promise<void> {
+    async start(interval: number = 1000, rateLimit: number = 1, limitWindow: number = 1000): Promise<void> {
         setInterval(async () => {
             const now = Date.now();
             if (rateLimit && limitWindow) {
