@@ -25,7 +25,8 @@
       "@pipes/*": ["src/api/pipes/*"],
       "@routes/*": ["src/api/routes/*"],
       "@middleware/*": ["src/api/middleware/*"],
-      "@controllers/*": ["src/api/controllers/*"]
+      "@controllers/*": ["src/api/controllers/*"],
+      "@notifications/*": ["src/dal/data/notifications/*"]
     }
   },
   "include": ["src/**/*.ts"],

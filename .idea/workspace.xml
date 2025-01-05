@@ -4,13 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="fixed tests&#10;unify responses">
-      <change afterPath="$PROJECT_DIR$/tests/integration/Constants.ts" afterDir="false" />
+    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="Queue &amp; Notification Strucuture">
+      <change afterPath="$PROJECT_DIR$/src/api/controllers/NotificationController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bl/dto/SendNotificationRequest.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bl/services/NotificationService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/NotificationAPIClient.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/NotificationManager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/core/contract.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/core/ioc.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/core/model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/providers/NotificationProviderRegistry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/providers/SMSProvider.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/queue/InMemoryNotificationQueue.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/queue/QueueFactory.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/decorators/authenticate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/decorators/authenticate.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/decorators/validate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/decorators/validate.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/utils/response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/utils/response.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integration/UserPreferencesController.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/UserPreferencesController.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bl/services/UserPreferencesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/bl/services/UserPreferencesService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/ioc.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/ioc.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/domain/repositories/UserPreferencesRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/domain/repositories/UserPreferencesRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/domain/storage/InMemoryUserPreferencesStorage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,14 +86,14 @@
       <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\api\decorators" />
-      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\types" />
-      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\bl" />
-      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\dal" />
-      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\core" />
+      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\dal\data\notifications\queue" />
+      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\dal\data\notifications\core" />
+      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\dal\data\notifications" />
+      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\dal\data\notifications\consumer" />
+      <recent name="C:\Users\Ahmad\IdeaProjects\user-notifications-manager\src\dal\domain" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.UserPreferencesController Integration Tests">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="UserPreferencesController Integration Tests" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -142,10 +157,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.dev" />
         <item itemvalue="Jest.UserPreferencesController Integration Tests" />
         <item itemvalue="Jest.UserPreferencesController Integration Tests.Create User Preferences: Missing Preference" />
         <item itemvalue="Jest.UserPreferencesController Integration Tests.Create User Preferences: Missing Email" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="Jest.UserPreferencesController Integration Tests.should fail to update user preferences with invalid email" />
       </list>
     </recent_temporary>
@@ -159,7 +174,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735995047049</updated>
       <workItem from="1735995048079" duration="5578000" />
-      <workItem from="1736001239578" duration="30907000" />
+      <workItem from="1736001239578" duration="42704000" />
     </task>
     <task id="LOCAL-00001" summary="empty package.json">
       <option name="closed" value="true" />
@@ -193,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736031172616</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fixed tests&#10;unify responses">
+      <option name="closed" value="true" />
+      <created>1736032176062</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736032176062</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +239,8 @@
     <MESSAGE value="gitignore&#10;yarn.lock&#10;idea project" />
     <MESSAGE value="validation&#10;fix user preferences flow" />
     <MESSAGE value="fixed tests&#10;unify responses" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed tests&#10;unify responses" />
+    <MESSAGE value="Queue &amp; Notification Strucuture" />
+    <option name="LAST_COMMIT_MESSAGE" value="Queue &amp; Notification Strucuture" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -234,25 +258,25 @@
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts</url>
+          <url>file://$PROJECT_DIR$/src/dal/domain/storage/InMemoryUserPreferencesStorage.ts</url>
           <line>27</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts</url>
+          <url>file://$PROJECT_DIR$/src/dal/domain/storage/InMemoryUserPreferencesStorage.ts</url>
           <line>14</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts</url>
+          <url>file://$PROJECT_DIR$/src/dal/domain/storage/InMemoryUserPreferencesStorage.ts</url>
           <line>21</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts</url>
+          <url>file://$PROJECT_DIR$/src/dal/domain/storage/InMemoryUserPreferencesStorage.ts</url>
           <line>11</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="17" />
@@ -264,10 +288,46 @@
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/infra/storage/InMemoryUserPreferencesStorage.ts</url>
+          <url>file://$PROJECT_DIR$/src/dal/domain/storage/InMemoryUserPreferencesStorage.ts</url>
           <line>55</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/providers/SMSProvider.ts</url>
+          <line>19</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts</url>
+          <line>20</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts</url>
+          <line>23</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/NotificationManager.ts</url>
+          <line>18</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/NotificationManager.ts</url>
+          <line>25</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/dal/data/notifications/queue/InMemoryNotificationQueue.ts</url>
+          <line>19</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

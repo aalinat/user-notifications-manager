@@ -1,6 +1,6 @@
 import { injectable, inject } from "inversify";
 import {UserMapping, UserPreferences, UserRecord} from '@entities/UserRecord';
-import {InMemoryUserPreferencesStorage} from "@storage/InMemoryUserPreferencesStorage";
+import {InMemoryUserPreferencesStorage} from "@src/dal/domain/storage/InMemoryUserPreferencesStorage";
 
 @injectable()
 export class UserPreferencesRepository {

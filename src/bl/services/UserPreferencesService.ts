@@ -34,4 +34,8 @@ export class UserPreferencesService {
     getUsers() {
         return this.repository.findUsers();
     }
+
+    getUserById(userId: string) {
+        return this.repository.findByUserId(userId);
+    }
 }
