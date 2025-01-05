@@ -2,17 +2,31 @@ import {NotificationProvider, NotificationProviderRegistry, NotificationQueue} f
 import {NotificationChannel, NotificationRequest} from "@notifications/core/model";
 import {inject, injectable, multiInject} from "inversify";
 import {QueueFactory} from "@notifications/queue/QueueFactory";
+import {NotificationConsumer} from "@notifications/queue/NotificationConsumer";
+import {ConsumerFactory} from "@notifications/queue/ConsumerFactory";
 
 @injectable()
 export class ProviderRegistry implements NotificationProviderRegistry {
     private queues = new Map<NotificationChannel, NotificationQueue<NotificationRequest>>();
+    private consumers = new Map<NotificationChannel, NotificationConsumer>();
     private registry = new Map<NotificationChannel, NotificationProvider>();
     constructor(@multiInject('NotificationProvider')
                     providers: NotificationProvider[],
-                @inject(QueueFactory) private queueFactory: QueueFactory) {
+                @inject(QueueFactory) private queueFactory: QueueFactory,
+                @inject(ConsumerFactory) private consumerFactory: ConsumerFactory) {
         providers.forEach((provider: NotificationProvider) => {
             this.registry.set(provider.getProviderChannel(), provider);
-            this.queues.set(provider.getProviderChannel(),queueFactory.createQueue());
+            const queue = queueFactory.createQueue();
+            queue.configure({
+                rateLimit: 1,
+                maxRetries: 3,
+                limitWindow: 1000,
+                delayBetweenRetries: 200
+            })
+            this.queues.set(provider.getProviderChannel(),queue);
+            const consumer = consumerFactory.createConsumer(provider, provider.getProviderChannel(), queue);
+            this.consumers.set(provider.getProviderChannel(), consumer);
+            consumer.startPolling(1000)
         })
     }
     getProvider(channel: NotificationChannel): NotificationProvider {
@@ -22,6 +36,7 @@ export class ProviderRegistry implements NotificationProviderRegistry {
         }
         return provider;
     }
+
     getQueue(channel: NotificationChannel): NotificationQueue<NotificationRequest> {
         const queue = this.queues.get(channel);
         if (!queue) {
