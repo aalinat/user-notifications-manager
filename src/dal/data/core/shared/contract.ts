@@ -28,7 +28,7 @@ export interface IQueuePool<PAYLOAD> {
 
 export interface MessageQueue<PAYLOAD> {
     configure(config: QueueConfig): void;
-    enqueue(message: PAYLOAD): Promise<string>;
+    enqueue(message: PAYLOAD, dueTime: number): Promise<string>;
     /**
      * Dequeue a message from the queue.
      * @returns The next message in the queue or null if empty.

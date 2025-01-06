@@ -11,22 +11,25 @@ export class NotificationService {
     }
 
     sendMessage(request: SendNotificationRequest) {
-        const notificationRequest = new NotificationRequest();
         const user = this.userPreferencesService.getUserById(request.userId);
         if (!user) {
             throw new Error("cannot send notification, user not found");
         }
-        notificationRequest.message = request.message;
-
-        const channels: NotificationChannel[] = [];
+        const requests: NotificationRequest[] = [];
         if (user.preferences.email) {
-            notificationRequest.email = user.email;
-            channels.push(NotificationChannel.EMAIL);
+            const emailNotificationRequest = new NotificationRequest();
+            emailNotificationRequest.message = request.message;
+            emailNotificationRequest.email = user.email;
+            emailNotificationRequest.channel = NotificationChannel.EMAIL;
+            requests.push(emailNotificationRequest);
         }
         if (user.preferences.sms) {
-            notificationRequest.telephone = user.telephone;
-            channels.push(NotificationChannel.SMS)
+            const SMSNotificationRequest = new NotificationRequest();
+            SMSNotificationRequest.message = request.message;
+            SMSNotificationRequest.channel = NotificationChannel.SMS;
+            SMSNotificationRequest.telephone = user.telephone;
+            requests.push(SMSNotificationRequest)
         }
-        return this.notificationManager.send(channels, notificationRequest);
+        return this.notificationManager.send(requests);
     }
 }

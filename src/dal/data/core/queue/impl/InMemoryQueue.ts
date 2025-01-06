@@ -10,9 +10,9 @@ export class InMemoryQueue<T> implements MessageQueue<T> {
         this.config = config;
     }
 
-    async enqueue(message: T): Promise<string> {
+    async enqueue(message: T, dueTime: number): Promise<string> {
         const id = this.generateId();
-        const queueMessage: QueueMessage<T> = { id, payload: message, retries: 0, enqueueTime: Date.now() };
+        const queueMessage: QueueMessage<T> = { id, payload: message, retries: 0, enqueueTime: Date.now(), dueTime: dueTime };
         this.queue.push(queueMessage);
         return id;
     }

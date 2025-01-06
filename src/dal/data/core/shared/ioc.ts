@@ -11,6 +11,7 @@ import {SMSProvider} from "@data/core/providers/SMSProvider";
 import {ProviderRegistry} from "@data/core/providers/ProviderRegistry";
 import {NotificationManager} from "@notifications/NotificationManager";
 import {QueueBroker} from "@notifications/QueueBroker";
+import {RateLimitCache} from "@src/dal/domain/storage/RateLimitCache";
 
 
 export const notificationsContainer = new ContainerModule((bind: interfaces.Bind) => {
@@ -29,4 +30,5 @@ export const notificationsContainer = new ContainerModule((bind: interfaces.Bind
     bind<QueueFactory<NotificationRequest>>(QueueFactory).toSelf();
     bind<QueuePool<NotificationRequest>>(QueuePool).toSelf().inSingletonScope();
     bind<QueueBroker>(QueueBroker).toSelf().inSingletonScope();
+    bind<RateLimitCache>(RateLimitCache).toSelf().inSingletonScope();
 });

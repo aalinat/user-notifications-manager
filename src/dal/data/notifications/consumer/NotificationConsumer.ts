@@ -1,15 +1,16 @@
 import {
     NotificationChannel,
     NotificationRequest,
-    NotificationResponse,
+    NotificationResponse, QueueMessage,
     RateLimitError
 } from "@src/dal/data/core/shared/model";
 import {MessageQueue, NotificationProvider} from "@src/dal/data/core/shared/contract";
+import {RateLimitCache} from "@src/dal/domain/storage/RateLimitCache";
 
 export class NotificationConsumer {
     private lastProcessedTime: number = 0;
     private processedCount: number = 0;
-    constructor(private provider: NotificationProvider, private channel: NotificationChannel, private queue: MessageQueue<NotificationRequest>) {
+    constructor(private rateLimitCache: RateLimitCache, private provider: NotificationProvider, private channel: NotificationChannel, private queue: MessageQueue<NotificationRequest>) {
     }
 
     async handler(request: NotificationRequest): Promise<NotificationResponse> {
@@ -32,13 +33,21 @@ export class NotificationConsumer {
 
             const message = await this.queue.dequeue();
             if (message) {
+                const rateLimit = this.rateLimitCache.getRateLimitReset(message.payload.channel);
+                if (rateLimit && message.dueTime < rateLimit) {
+                    return this.reOffer(message, rateLimit)
+                }
+                if (message.dueTime >= Date.now()) {
+                    return this.reOffer(message, message.dueTime);
+                }
                 try {
                     await this.handler(message.payload);
                     await this.queue.acknowledge(message.id);
                     this.processedCount++;
                 } catch (error) {
                     if (error instanceof RateLimitError) {
-                        await this.sleep(error.retryAfterMS);
+                        this.rateLimitCache.set(message.payload.channel, error.retryLimitReset);
+                       return this.reOffer(message, Date.now() + error.retryAfterMS);
                     }
                     console.error(`Error processing message: ${message.id}`, error);
                     await this.queue.reject(message.id, true);
@@ -46,7 +55,11 @@ export class NotificationConsumer {
             }
         }, interval);
     }
-    private sleep(ms: number) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+    async reOffer(message: QueueMessage<NotificationRequest>, dueTime: number) {
+        await this.queue.acknowledge(message.id);
+        await this.queue.enqueue(message.payload, dueTime + this.getRandomNumber(100, 1000));
+    }
+    getRandomNumber(min: number, max: number): number {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }

@@ -13,6 +13,8 @@ export class NotificationRequest {
     telephone!: string;
     @IsNotEmpty()
     message!: string;
+    @IsNotEmpty()
+    channel!: NotificationChannel;
 }
 
 export class NotificationResponse {
@@ -31,7 +33,7 @@ export class NotificationError extends Error {
 }
 
 export class RateLimitError extends Error {
-    constructor(message: string, public errorCode: number, public retryAfterMS: number) {
+    constructor(message: string, public errorCode: number, public retryAfterMS: number, public retryLimitReset: number) {
         super(message);
         this.name = 'RateLimitError';
     }
@@ -42,7 +44,7 @@ export interface QueueMessage<T> {
     payload: T;
     retries: number;
     enqueueTime: number;
-    handleTime?: number;
+    dueTime: number;
 }
 
 export interface QueueConfig {
