@@ -1,4 +1,9 @@
-import {NotificationChannel, NotificationRequest, NotificationResponse} from "@src/dal/data/core/shared/model";
+import {
+    NotificationChannel,
+    NotificationRequest,
+    NotificationResponse,
+    RateLimitError
+} from "@src/dal/data/core/shared/model";
 import {MessageQueue, NotificationProvider} from "@src/dal/data/core/shared/contract";
 
 export class NotificationConsumer {
@@ -32,10 +37,16 @@ export class NotificationConsumer {
                     await this.queue.acknowledge(message.id);
                     this.processedCount++;
                 } catch (error) {
+                    if (error instanceof RateLimitError) {
+                        await this.sleep(error.retryAfterMS);
+                    }
                     console.error(`Error processing message: ${message.id}`, error);
                     await this.queue.reject(message.id, true);
                 }
             }
         }, interval);
+    }
+    private sleep(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }

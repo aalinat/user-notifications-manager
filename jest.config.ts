@@ -21,6 +21,8 @@ const config: Config.InitialOptions = {
         "@routes/(.*)": '<rootDir>/src/api/routes/$1',
         "@middleware/(.*)": '<rootDir>/src/api/middleware/$1',
         "@controllers/(.*)": '<rootDir>/src/api/controllers/$1',
+        "@notifications/(.*)": '<rootDir>/src/dal/data/notifications/$1',
+        "@data/(.*)": '<rootDir>/src/dal/data/$1'
     },
     transform: {
         '^.+\\.ts$': 'ts-jest',

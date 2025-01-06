@@ -4,31 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="better architecture">
-      <change afterPath="$PROJECT_DIR$/src/dal/data/core/providers/ProviderRegistry.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dal/data/core/queue/QueueFactory.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dal/data/core/queue/QueuePool.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/QueueBroker.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/consumer/ConsumerManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dal/data/notifications/consumer/NotificationConsumerFactory.ts" afterDir="false" />
+    <list default="true" id="b964aab7-998f-40d4-ae87-486f7c1650ab" name="Changes" comment="implement retry after sleep">
+      <change afterPath="$PROJECT_DIR$/src/dal/data/core/providers/helpers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bl/services/NotificationService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/bl/services/NotificationService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/ioc.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/ioc.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/NotificationAPIClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/core/clients/NotificationAPIClient.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/NotificationManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/NotificationManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/core/contract.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/core/shared/contract.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/core/ioc.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/core/shared/ioc.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/core/model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/core/shared/model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/providers/EmailProvider.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/core/providers/EmailProvider.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/providers/NotificationProviderRegistry.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/providers/SMSProvider.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/core/providers/SMSProvider.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/queue/ConsumerFactory.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/queue/InMemoryNotificationQueue.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/core/queue/impl/InMemoryQueue.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/queue/NotificationConsumer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/consumer/NotificationConsumer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/queue/QueueFactory.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jest.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/data/core/providers/EmailProvider.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/core/providers/EmailProvider.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/data/core/providers/SMSProvider.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/core/providers/SMSProvider.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/data/core/shared/model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/core/shared/model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/data/notifications/consumer/NotificationConsumer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/data/notifications/consumer/NotificationConsumer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +163,7 @@
       <updated>1735995047049</updated>
       <workItem from="1735995048079" duration="5578000" />
       <workItem from="1736001239578" duration="51037000" />
-      <workItem from="1736110039571" duration="10646000" />
+      <workItem from="1736110039571" duration="14325000" />
     </task>
     <task id="LOCAL-00001" summary="empty package.json">
       <option name="closed" value="true" />
@@ -253,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736052553248</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="better architecture">
+      <option name="closed" value="true" />
+      <created>1736120698454</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1736120698454</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +275,8 @@
     <MESSAGE value="request handling" />
     <MESSAGE value="docker compose&#10;postman collection&#10;documentation" />
     <MESSAGE value="better architecture" />
-    <option name="LAST_COMMIT_MESSAGE" value="better architecture" />
+    <MESSAGE value="implement retry after sleep" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement retry after sleep" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -327,11 +320,6 @@
           <url>file://$PROJECT_DIR$/src/dal/domain/storage/InMemoryUserPreferencesStorage.ts</url>
           <line>55</line>
           <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/data/core/providers/SMSProvider.ts</url>
-          <line>24</line>
-          <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dal/data/core/providers/EmailProvider.ts</url>
@@ -377,21 +365,6 @@
           <url>file://$PROJECT_DIR$/src/dal/data/notifications/consumer/NotificationConsumer.ts</url>
           <line>36</line>
           <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/data/core/providers/EmailProvider.ts</url>
-          <line>34</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/data/core/providers/SMSProvider.ts</url>
-          <line>33</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/data/core/providers/SMSProvider.ts</url>
-          <line>31</line>
-          <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dal/data/core/providers/EmailProvider.ts</url>
@@ -444,21 +417,15 @@
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="62" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/data/notifications/consumer/NotificationConsumer.ts</url>
-          <line>10</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dal/data/notifications/consumer/NotificationConsumer.ts</url>
-          <line>16</line>
+          <line>21</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dal/data/notifications/consumer/NotificationConsumer.ts</url>
-          <line>28</line>
+          <line>33</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="65" />
         </line-breakpoint>
@@ -469,10 +436,10 @@
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/dal/data/core/providers/SMSProvider.ts</url>
-          <line>29</line>
+          <url>file://$PROJECT_DIR$/src/dal/data/core/providers/helpers.ts</url>
+          <line>10</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="68" />
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

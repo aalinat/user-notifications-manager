@@ -30,11 +30,19 @@ export class NotificationError extends Error {
     }
 }
 
+export class RateLimitError extends Error {
+    constructor(message: string, public errorCode: number, public retryAfterMS: number) {
+        super(message);
+        this.name = 'RateLimitError';
+    }
+}
+
 export interface QueueMessage<T> {
     id: string;
     payload: T;
     retries: number;
     enqueueTime: number;
+    handleTime?: number;
 }
 
 export interface QueueConfig {
